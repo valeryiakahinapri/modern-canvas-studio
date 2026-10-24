@@ -26,7 +26,7 @@ const tools = [
 
 const menus = ["File", "Edit", "Image", "Layer", "Type", "Select", "Filter", "View", "Plugins", "Window", "Help"];
 
-function IconBtn({ children, active, title, className, onClick }: { children: ReactNode; active?: boolean; title?: string; className?: string; onClick?: () => void }) {
+function IconBtn({ children, active, title, className, onClick }: { children: ReactNode; active?: boolean | undefined; title?: string | undefined; className?: string | undefined; onClick?: (() => void) | undefined }) {
   return (
     <button
       title={title}
@@ -78,7 +78,7 @@ function Switch({ on }: { on: boolean }) {
 }
 
 function PanelCard({ tabs, children, grow, collapsed, onToggle }: { tabs: string[]; children: ReactNode; grow?: boolean; collapsed?: boolean; onToggle?: () => void }) {
-  const [tab, setTab] = useState(tabs[0]);
+  const [tab, setTab] = useState<string>(tabs[0] ?? "");
   return (
     <section className={cn("island flex min-h-0 flex-col overflow-hidden", grow && !collapsed && "flex-1")}>
       <header className="flex items-center gap-2 px-2 pt-2 pb-1.5">
