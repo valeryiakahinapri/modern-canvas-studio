@@ -360,7 +360,10 @@ export function PhotoshopShell() {
           </aside>
           {/* Floating flyout panel when the rail is collapsed */}
           {!rightOpen && flyout && (
-            <div className="absolute right-full top-1.5 z-50 mr-2 w-[300px] overflow-hidden rounded-[4px] bg-popover/95 shadow-[var(--shadow-island)] backdrop-blur-xl animate-in fade-in slide-in-from-right-1 duration-150">
+            <div
+              className="absolute right-full z-50 mr-2 w-[300px] overflow-hidden rounded-[4px] bg-popover/95 shadow-[var(--shadow-island)] backdrop-blur-xl animate-in fade-in slide-in-from-right-1 duration-150"
+              style={{ top: { color: 46, adjust: 82, layers: 118 }[flyout] }}
+            >
               <div className="flex items-center justify-between border-b border-hairline px-3 py-1.5">
                 <span className="text-[12px] font-medium">{{ color: "Color", adjust: "Adjustments", layers: "Layers" }[flyout]}</span>
                 <IconBtn title="Close" className="h-6 w-6 [&_svg]:h-3.5 [&_svg]:w-3.5" onClick={() => setFlyout(null)}><X /></IconBtn>
