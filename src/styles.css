@@ -40,7 +40,7 @@
 }
 
 :root {
-  --radius: 5px;
+  --radius: 7px;
   /* Graphite workspace with a cool-blue "Ps" accent */
   --background: oklch(0.155 0.004 260);
   --workspace: oklch(0.125 0.003 260);
