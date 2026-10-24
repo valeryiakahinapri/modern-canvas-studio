@@ -358,9 +358,9 @@ export function PhotoshopShell() {
           </aside>
           <div className={cn("flex min-h-0 flex-col gap-2 overflow-hidden transition-[width,opacity] duration-300 ease-out", rightOpen ? "w-[316px] opacity-100" : "w-0 opacity-0")}>
             <div className="flex min-h-0 w-[316px] flex-1 flex-col gap-2">
-              <PanelCard tabs={["Color", "Swatches", "Gradients"]} collapsed={collapsed.color} onToggle={() => toggle("color")}><ColorPanel /></PanelCard>
-              <PanelCard tabs={["Adjustments", "Properties", "Libraries"]} collapsed={collapsed.adjust} onToggle={() => toggle("adjust")}><AdjustmentsPanel /></PanelCard>
-              <PanelCard tabs={["Layers", "Channels", "Paths"]} grow collapsed={collapsed.layers} onToggle={() => toggle("layers")}><LayersPanel /></PanelCard>
+              <PanelCard tabs={["Color", "Swatches", "Gradients"]} collapsed={!!collapsed["color"]} onToggle={() => toggle("color")}><ColorPanel /></PanelCard>
+              <PanelCard tabs={["Adjustments", "Properties", "Libraries"]} collapsed={!!collapsed["adjust"]} onToggle={() => toggle("adjust")}><AdjustmentsPanel /></PanelCard>
+              <PanelCard tabs={["Layers", "Channels", "Paths"]} grow collapsed={!!collapsed["layers"]} onToggle={() => toggle("layers")}><LayersPanel /></PanelCard>
             </div>
           </div>
         </div>
