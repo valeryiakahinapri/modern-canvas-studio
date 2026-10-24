@@ -32,7 +32,7 @@ function IconBtn({ children, active, title, className, onClick }: { children: Re
       title={title}
       onClick={onClick}
       className={cn(
-        "grid h-8 w-8 shrink-0 place-items-center rounded-[2px] text-muted-foreground transition-all duration-150 hover:bg-surface-3 hover:text-foreground active:scale-95 [&_svg]:h-[16px] [&_svg]:w-[16px] [&_svg]:stroke-[1.75]",
+        "grid h-8 w-8 shrink-0 place-items-center rounded-[4px] text-muted-foreground transition-all duration-150 hover:bg-surface-3 hover:text-foreground active:scale-95 [&_svg]:h-[16px] [&_svg]:w-[16px] [&_svg]:stroke-[1.75]",
         active && "bg-surface-3 text-foreground",
         className,
       )}
@@ -44,13 +44,13 @@ function IconBtn({ children, active, title, className, onClick }: { children: Re
 
 function Segmented({ items, value, onChange }: { items: string[]; value: string; onChange: (v: string) => void }) {
   return (
-    <div className="flex min-w-0 gap-0.5 rounded-[2px] bg-background/60 p-[3px] shadow-[inset_0_0_0_1px_var(--hairline)]">
+    <div className="flex min-w-0 gap-0.5 rounded-[5px] bg-background/60 p-[3px] shadow-[inset_0_0_0_1px_var(--hairline)]">
       {items.map((it) => (
         <button
           key={it}
           onClick={() => onChange(it)}
           className={cn(
-            "truncate rounded-[2px] px-2.5 py-1 text-[11.5px] font-medium transition-all",
+            "truncate rounded-[3px] px-2.5 py-1 text-[11.5px] font-medium transition-all",
             value === it ? "bg-surface-3 text-foreground shadow-[0_1px_2px_oklch(0_0_0/40%),inset_0_1px_0_oklch(1_0_0/6%)]" : "text-muted-foreground hover:text-foreground",
           )}
         >
@@ -63,7 +63,7 @@ function Segmented({ items, value, onChange }: { items: string[]; value: string;
 
 function Pill({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className={cn("flex h-7 items-center gap-1.5 rounded-[2px] bg-surface-2 px-2.5 text-[11.5px] text-foreground shadow-[inset_0_0_0_1px_var(--hairline)]", className)}>
+    <div className={cn("flex h-7 items-center gap-1.5 rounded-[4px] bg-surface-2 px-2.5 text-[11.5px] text-foreground shadow-[inset_0_0_0_1px_var(--hairline)]", className)}>
       {children}
     </div>
   );
@@ -98,11 +98,11 @@ function ColorPanel() {
   return (
     <div className="flex gap-3 px-3 pb-3 pt-1">
       <div className="relative h-14 w-14 shrink-0">
-        <div className="absolute bottom-0 right-0 h-9 w-9 rounded-[2px] bg-foreground shadow-[0_0_0_2px_var(--surface)]" />
-        <div className="absolute left-0 top-0 h-9 w-9 rounded-[2px] bg-[oklch(0.55_0.2_25)] shadow-[0_0_0_2px_var(--surface),0_4px_10px_oklch(0_0_0/50%)]" />
+        <div className="absolute bottom-0 right-0 h-9 w-9 rounded-[3px] bg-foreground shadow-[0_0_0_2px_var(--surface)]" />
+        <div className="absolute left-0 top-0 h-9 w-9 rounded-[3px] bg-[oklch(0.55_0.2_25)] shadow-[0_0_0_2px_var(--surface),0_4px_10px_oklch(0_0_0/50%)]" />
         <ArrowLeftRight className="absolute -bottom-0.5 left-0 h-3 w-3 text-faint" />
       </div>
-      <div className="relative h-28 flex-1 overflow-hidden rounded-[2px] shadow-[inset_0_0_0_1px_var(--hairline)]" style={{ background: "linear-gradient(to top, #000, transparent), linear-gradient(to right, #fff, hsl(0 85% 50%))" }}>
+      <div className="relative h-28 flex-1 overflow-hidden rounded-[3px] shadow-[inset_0_0_0_1px_var(--hairline)]" style={{ background: "linear-gradient(to top, #000, transparent), linear-gradient(to right, #fff, hsl(0 85% 50%))" }}>
         <span className="absolute left-[78%] top-[22%] h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-foreground shadow-[0_0_0_1px_oklch(0_0_0/50%)]" />
       </div>
       <div className="hue-strip relative h-28 w-3 shrink-0 rounded-full">
@@ -123,14 +123,14 @@ function AdjustmentsPanel() {
         <Segmented items={["Presets", "Single"]} value={mode} onChange={setMode} />
         <div className="flex"><IconBtn title="New"><Plus /></IconBtn><IconBtn title="Group"><Folder /></IconBtn><IconBtn title="Delete"><Trash2 /></IconBtn></div>
       </div>
-      <button onClick={() => setOpen(!open)} className="flex items-center gap-1.5 rounded-[2px] px-1 py-1 text-[11.5px] font-medium text-muted-foreground hover:text-foreground">
+      <button onClick={() => setOpen(!open)} className="flex items-center gap-1.5 rounded-[3px] px-1 py-1 text-[11.5px] font-medium text-muted-foreground hover:text-foreground">
         <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", !open && "-rotate-90")} /> Automotive
         <span className="ml-auto font-mono text-[10px] text-faint">8</span>
       </button>
       {open && (
         <div className="grid grid-cols-4 gap-1.5">
           {presets.map((f, i) => (
-            <button key={i} className="group relative aspect-square overflow-hidden rounded-[3px] shadow-[inset_0_0_0_1px_var(--hairline)] ring-primary transition-all hover:ring-2 hover:ring-offset-2 hover:ring-offset-surface">
+            <button key={i} className="group relative aspect-square overflow-hidden rounded-[4px] shadow-[inset_0_0_0_1px_var(--hairline)] ring-primary transition-all hover:ring-2 hover:ring-offset-2 hover:ring-offset-surface">
               <img src={canvasImg} alt="" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110" style={{ filter: f, objectPosition: "60% 50%" }} />
             </button>
           ))}
@@ -161,7 +161,7 @@ function LayersPanel() {
         </div>
         <div className="flex items-center gap-1.5">
           <span className="text-[11px] text-faint">Lock</span>
-          <div className="flex rounded-[2px] bg-surface-2 p-0.5">
+          <div className="flex rounded-[4px] bg-surface-2 p-0.5">
             {[Grid3x3, Brush, Move, Frame, Lock].map((I, i) => <IconBtn key={i} className="h-6 w-6 [&_svg]:h-3.5 [&_svg]:w-3.5"><I /></IconBtn>)}
           </div>
           <Pill className="ml-auto w-[110px] justify-between"><span className="text-faint">Fill</span><span className="font-mono">100%</span></Pill>
@@ -173,17 +173,17 @@ function LayersPanel() {
             key={l.name}
             onClick={() => setSel(i)}
             className={cn(
-              "group flex cursor-default items-center gap-2 rounded-[2px] p-1.5 pr-2.5 transition-all",
+              "group flex cursor-default items-center gap-2 rounded-[4px] p-1.5 pr-2.5 transition-all",
               sel === i ? "bg-primary/15 shadow-[inset_0_0_0_1px_oklch(0.68_0.16_250/35%)]" : "hover:bg-surface-2",
             )}
           >
-            <button onClick={(e) => { e.stopPropagation(); setVis(vis.map((v, j) => (j === i ? !v : v))); }} className="grid h-6 w-6 place-items-center rounded-[3px] text-muted-foreground hover:text-foreground">
+            <button onClick={(e) => { e.stopPropagation(); setVis(vis.map((v, j) => (j === i ? !v : v))); }} className="grid h-6 w-6 place-items-center rounded-[4px] text-muted-foreground hover:text-foreground">
               {vis[i] ? <Eye className="h-3.5 w-3.5" /> : <EyeOff className="h-3.5 w-3.5 text-faint" />}
             </button>
             {l.kind === "adj" ? (
-              <div className="grid h-9 w-12 place-items-center rounded-[2px] bg-surface-3"><SlidersHorizontal className="h-4 w-4 text-muted-foreground" /></div>
+              <div className="grid h-9 w-12 place-items-center rounded-[3px] bg-surface-3"><SlidersHorizontal className="h-4 w-4 text-muted-foreground" /></div>
             ) : (
-              <div className="checker h-9 w-12 overflow-hidden rounded-[2px] shadow-[inset_0_0_0_1px_var(--hairline)]">
+              <div className="checker h-9 w-12 overflow-hidden rounded-[3px] shadow-[inset_0_0_0_1px_var(--hairline)]">
                 <img src={canvasImg} alt="" className={cn("h-full w-full object-cover", !vis[i] && "opacity-30")} />
               </div>
             )}
@@ -212,22 +212,22 @@ export function PhotoshopShell() {
     <div className="flex h-screen flex-col gap-2 bg-background p-2 text-foreground">
       {/* Title / menu bar */}
       <div className="flex h-10 shrink-0 items-center gap-1 px-1">
-        <div className="mr-2 grid h-7 w-7 place-items-center rounded-[2px] text-[11px] font-bold tracking-tight text-primary-foreground" style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-active)" }}>Ps</div>
+        <div className="mr-2 grid h-7 w-7 place-items-center rounded-[4px] text-[11px] font-bold tracking-tight text-primary-foreground" style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-active)" }}>Ps</div>
         <nav className="flex min-w-0 items-center overflow-hidden">
           {menus.map((m) => (
-            <button key={m} className="rounded-[2px] px-2.5 py-1 text-[12.5px] text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground">{m}</button>
+            <button key={m} className="rounded-[4px] px-2.5 py-1 text-[12.5px] text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground">{m}</button>
           ))}
         </nav>
         <div className="mx-auto hidden items-center gap-2 lg:flex">
-          <div className="flex h-8 w-[340px] items-center gap-2 rounded-[3px] bg-surface px-3.5 text-muted-foreground shadow-[var(--shadow-island)]">
+          <div className="flex h-8 w-[340px] items-center gap-2 rounded-[5px] bg-surface px-3.5 text-muted-foreground shadow-[var(--shadow-island)]">
             <Search className="h-3.5 w-3.5" />
             <span className="text-[12px]">Search tools, actions, help…</span>
-            <kbd className="ml-auto rounded-[2px] bg-surface-3 px-1.5 py-0.5 font-mono text-[10px]">⌘K</kbd>
+            <kbd className="ml-auto rounded-[3px] bg-surface-3 px-1.5 py-0.5 font-mono text-[10px]">⌘K</kbd>
           </div>
         </div>
         <div className="ml-auto flex items-center gap-1">
           <IconBtn title="Undo"><Undo2 /></IconBtn><IconBtn title="Redo"><Redo2 /></IconBtn>
-          <button className="ml-1 flex h-8 items-center gap-1.5 rounded-[3px] px-3.5 text-[12px] font-medium text-primary-foreground transition-transform active:scale-95" style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-active)" }}>
+          <button className="ml-1 flex h-8 items-center gap-1.5 rounded-[4px] px-3.5 text-[12px] font-medium text-primary-foreground transition-transform active:scale-95" style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-active)" }}>
             <Share className="h-3.5 w-3.5" /> Share
           </button>
           <div className="ml-1 grid h-8 w-8 place-items-center rounded-full bg-surface-3 text-[11px] font-semibold">AK</div>
@@ -243,12 +243,12 @@ export function PhotoshopShell() {
         <Pill>Layer <ChevronDown className="h-3 w-3 text-faint" /></Pill>
         <label className="flex items-center gap-2 whitespace-nowrap text-[11.5px] text-muted-foreground"><Switch on={false} /> Transform controls</label>
         <div className="h-5 w-px bg-hairline" />
-        <div className="flex rounded-[3px] bg-surface-2 p-0.5">
+        <div className="flex rounded-[4px] bg-surface-2 p-0.5">
           {[AlignStartVertical, AlignCenterVertical, AlignEndVertical, AlignStartHorizontal, AlignCenterHorizontal, AlignEndHorizontal].map((I, i) => <IconBtn key={i} className="h-7 w-7"><I /></IconBtn>)}
         </div>
         <IconBtn><MoreHorizontal /></IconBtn>
         <div className="ml-auto flex items-center gap-1">
-          <button className="flex h-8 items-center gap-1.5 rounded-[3px] bg-surface-2 px-3 text-[11.5px] font-medium shadow-[inset_0_0_0_1px_var(--hairline)] hover:bg-surface-3">
+          <button className="flex h-8 items-center gap-1.5 rounded-[4px] bg-surface-2 px-3 text-[11.5px] font-medium shadow-[inset_0_0_0_1px_var(--hairline)] hover:bg-surface-3">
             <Sparkles className="h-3.5 w-3.5 text-primary" /> Generative Fill
           </button>
           <IconBtn><Settings2 /></IconBtn>
@@ -276,8 +276,8 @@ export function PhotoshopShell() {
             })}
           </div>
           <div className="relative mt-1 h-9 w-9 shrink-0">
-            <div className="absolute bottom-0 right-0 h-5 w-5 rounded-[2px] bg-foreground shadow-[0_0_0_2px_var(--surface)]" />
-            <div className="absolute left-0 top-0 h-5 w-5 rounded-[2px] bg-[oklch(0.55_0.2_25)] shadow-[0_0_0_2px_var(--surface)]" />
+            <div className="absolute bottom-0 right-0 h-5 w-5 rounded-[3px] bg-foreground shadow-[0_0_0_2px_var(--surface)]" />
+            <div className="absolute left-0 top-0 h-5 w-5 rounded-[3px] bg-[oklch(0.55_0.2_25)] shadow-[0_0_0_2px_var(--surface)]" />
           </div>
           <div className={cn("mt-1 w-full shrink-0 border-t border-hairline pt-1", leftOpen ? "grid grid-cols-2 justify-items-center gap-1" : "flex flex-col items-center gap-1")}>
             <IconBtn title="Edit Toolbar"><MoreHorizontal /></IconBtn>
@@ -290,19 +290,19 @@ export function PhotoshopShell() {
 
         {/* Document */}
         <main className="island flex min-w-0 flex-1 flex-col overflow-hidden">
-          <div className="flex h-10 shrink-0 items-end gap-1 px-2 pt-1.5">
-            <div className="flex h-8 items-center gap-2 rounded-t-[3px] bg-workspace pl-3 pr-1.5 text-[12px]">
+          <div className="flex h-10 shrink-0 items-center gap-1 px-2">
+            <div className="flex h-8 items-center gap-2 rounded-[5px] bg-workspace pl-3 pr-1.5 text-[12px] shadow-[inset_0_0_0_1px_var(--hairline)]">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" />
               <span className="truncate font-medium">porsche_mural.psd</span>
               <span className="font-mono text-[10.5px] text-faint">{zoom}% · RGB/8</span>
               <IconBtn className="h-5 w-5 [&_svg]:h-3 [&_svg]:w-3"><X /></IconBtn>
             </div>
-            <div className="flex h-8 items-center gap-2 rounded-t-[3px] px-3 text-[12px] text-muted-foreground hover:bg-surface-2">
+            <div className="flex h-8 items-center gap-2 rounded-[5px] px-3 text-[12px] text-muted-foreground hover:bg-surface-2">
               <span className="truncate">untitled-2.psd</span>
             </div>
-            <IconBtn className="mb-0.5 h-7 w-7"><Plus /></IconBtn>
+            <IconBtn className="h-7 w-7"><Plus /></IconBtn>
           </div>
-          <div className="workspace-bg relative grid min-h-0 flex-1 place-items-center overflow-hidden rounded-[3px] mx-1.5 mb-1.5">
+          <div className="workspace-bg relative grid min-h-0 flex-1 place-items-center overflow-hidden rounded-[5px] mx-1.5 mb-1.5">
             <div className="relative shadow-canvas" style={{ width: `${zoom * 1.6}%`, maxWidth: "92%" }}>
               <img src={canvasImg} alt="Document canvas" width={1600} height={912} className="block h-auto w-full select-none" draggable={false} />
               <div className="pointer-events-none absolute inset-[12%_8%_10%_12%] rounded-[1px] border border-primary/80">
@@ -312,17 +312,17 @@ export function PhotoshopShell() {
               </div>
             </div>
             {/* Floating contextual task bar */}
-            <div className="absolute bottom-14 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-[4px] bg-popover/90 p-1 pl-3 shadow-[var(--shadow-island)] backdrop-blur-xl">
+            <div className="absolute bottom-14 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-[6px] bg-popover/90 p-1 pl-3 shadow-[var(--shadow-island)] backdrop-blur-xl">
               <Sparkles className="h-3.5 w-3.5 text-primary" />
               <span className="mr-1 text-[11.5px] text-muted-foreground">Vehicle Cutout</span>
               {["Select subject", "Remove background", "Generative expand"].map((a) => (
-                <button key={a} className="whitespace-nowrap rounded-[2px] px-3 py-1.5 text-[11.5px] font-medium hover:bg-surface-3">{a}</button>
+                <button key={a} className="whitespace-nowrap rounded-[4px] px-3 py-1.5 text-[11.5px] font-medium hover:bg-surface-3">{a}</button>
               ))}
               <IconBtn className="h-7 w-7"><MoreHorizontal /></IconBtn>
             </div>
             {/* Status bar */}
-            <div className="absolute inset-x-2 bottom-2 flex items-center gap-3 rounded-[3px] bg-surface/80 px-2 py-1 text-[11px] text-muted-foreground backdrop-blur-xl shadow-[inset_0_0_0_1px_var(--hairline)]">
-              <div className="flex items-center rounded-[2px] bg-surface-2">
+            <div className="absolute inset-x-2 bottom-2 flex items-center gap-3 rounded-[5px] bg-surface/80 px-2 py-1 text-[11px] text-muted-foreground backdrop-blur-xl shadow-[inset_0_0_0_1px_var(--hairline)]">
+              <div className="flex items-center rounded-[4px] bg-surface-2">
                 <IconBtn className="h-6 w-6 [&_svg]:h-3 [&_svg]:w-3" onClick={() => setZoom(Math.max(15, zoom - 5))}><Minus /></IconBtn>
                 <span className="w-10 text-center font-mono text-foreground">{zoom}%</span>
                 <IconBtn className="h-6 w-6 [&_svg]:h-3 [&_svg]:w-3" onClick={() => setZoom(Math.min(60, zoom + 5))}><Plus /></IconBtn>
@@ -361,7 +361,7 @@ export function PhotoshopShell() {
           {/* Floating flyout panel when the rail is collapsed */}
           {!rightOpen && flyout && (
             <div
-              className="absolute right-full z-50 mr-2 w-[300px] overflow-hidden rounded-[4px] bg-popover/95 shadow-[var(--shadow-island)] backdrop-blur-xl animate-in fade-in slide-in-from-right-1 duration-150"
+              className="absolute right-full z-50 mr-2 w-[300px] overflow-hidden rounded-[6px] bg-popover/95 shadow-[var(--shadow-island)] backdrop-blur-xl animate-in fade-in slide-in-from-right-1 duration-150"
               style={{ top: { color: 46, adjust: 82, layers: 118 }[flyout] }}
             >
               <div className="flex items-center justify-between border-b border-hairline px-3 py-1.5">
