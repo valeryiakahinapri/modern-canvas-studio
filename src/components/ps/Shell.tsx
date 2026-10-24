@@ -258,39 +258,32 @@ export function PhotoshopShell() {
       {/* Main */}
       <div className="flex min-h-0 flex-1 gap-2">
         {/* Left toolbar */}
-        <aside className={cn("island flex shrink-0 flex-col items-center overflow-hidden py-1.5 transition-[width] duration-300 ease-out", leftOpen ? "w-12" : "w-9")}>
+        <aside className={cn("island flex shrink-0 flex-col items-center overflow-hidden px-1.5 py-1.5 transition-[width] duration-300 ease-out", leftOpen ? "w-[80px]" : "w-12")}>
           <IconBtn title={leftOpen ? "Collapse toolbar" : "Expand toolbar"} onClick={() => setLeftOpen(!leftOpen)} className="h-7 w-7 text-faint">
             {leftOpen ? <PanelLeftClose /> : <PanelLeftOpen />}
           </IconBtn>
-          <div className="my-1 h-px w-6 bg-hairline" />
-          {leftOpen ? (
-            <div className="flex min-h-0 flex-1 flex-col items-center gap-0.5 overflow-y-auto overflow-x-hidden [scrollbar-width:none]">
-              {tools.map((t, i) => {
-                if (!t) return <div key={i} className="my-1 h-px w-6 shrink-0 bg-hairline" />;
-                const [I, name, key] = t;
-                const active = tool === name;
-                return (
-                  <div key={name} className="group relative">
-                    <IconBtn title={`${name} (${key})`} onClick={() => setTool(name)} className={cn(active && "tool-active text-primary-foreground hover:bg-transparent hover:text-primary-foreground")}>
-                      <I />
-                    </IconBtn>
-                    {active && <span className="absolute -left-1.5 top-1/2 h-4 w-[3px] -translate-y-1/2 rounded-full bg-primary" />}
-                  </div>
-                );
-              })}
-            </div>
-          ) : (
-            <div className="flex flex-col items-center gap-0.5">
-              <IconBtn className="tool-active h-7 w-7 text-primary-foreground"><Move /></IconBtn>
-            </div>
-          )}
-          {leftOpen && (
-            <div className="relative mt-1 h-9 w-9 shrink-0">
-              <div className="absolute bottom-0 right-0 h-5 w-5 rounded-[6px] bg-foreground shadow-[0_0_0_2px_var(--surface)]" />
-              <div className="absolute left-0 top-0 h-5 w-5 rounded-[6px] bg-[oklch(0.55_0.2_25)] shadow-[0_0_0_2px_var(--surface)]" />
-            </div>
-          )}
+          <div className="my-1 h-px w-full shrink-0 bg-hairline" />
+          <div className={cn("grid min-h-0 flex-1 content-start justify-items-center gap-1 overflow-y-auto overflow-x-hidden [scrollbar-width:none]", leftOpen ? "grid-cols-2" : "grid-cols-1")}>
+            {tools.map((t, i) => {
+              if (!t) return <div key={i} className="col-span-full my-1 h-px w-full shrink-0 bg-hairline" />;
+              const [I, name, key] = t;
+              const active = tool === name;
+              return (
+                <div key={name} className="group relative">
+                  <IconBtn title={`${name} (${key})`} onClick={() => setTool(name)} className={cn(active && "tool-active text-primary-foreground hover:bg-transparent hover:text-primary-foreground")}>
+                    <I />
+                  </IconBtn>
+                  {active && <span className="absolute -left-1 top-1/2 h-4 w-[3px] -translate-y-1/2 rounded-full bg-primary" />}
+                </div>
+              );
+            })}
+          </div>
+          <div className="relative mt-1 h-9 w-9 shrink-0">
+            <div className="absolute bottom-0 right-0 h-5 w-5 rounded-[4px] bg-foreground shadow-[0_0_0_2px_var(--surface)]" />
+            <div className="absolute left-0 top-0 h-5 w-5 rounded-[4px] bg-[oklch(0.55_0.2_25)] shadow-[0_0_0_2px_var(--surface)]" />
+          </div>
         </aside>
+
 
         {/* Document */}
         <main className="island flex min-w-0 flex-1 flex-col overflow-hidden">
