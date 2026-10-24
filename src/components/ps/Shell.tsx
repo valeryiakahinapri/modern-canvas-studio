@@ -205,6 +205,7 @@ export function PhotoshopShell() {
   const [rightOpen, setRightOpen] = useState(true);
   const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
   const toggle = (k: string) => setCollapsed((c) => ({ ...c, [k]: !c[k] }));
+  const [flyout, setFlyout] = useState<string | null>(null);
   const [zoom, setZoom] = useState(42);
 
   return (
