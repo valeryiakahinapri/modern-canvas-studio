@@ -336,15 +336,21 @@ export function PhotoshopShell() {
         {/* Right rail + panels */}
         <div className="island relative flex shrink-0">
           <aside className="flex w-11 border-r border-hairline flex-col items-center gap-0.5 py-1.5">
-            <IconBtn title={rightOpen ? "Collapse panels" : "Expand panels"} onClick={() => setRightOpen(!rightOpen)} className="h-7 w-7 text-faint">
+            <IconBtn title={rightOpen ? "Collapse panels" : "Expand panels"} onClick={() => { setRightOpen(!rightOpen); setFlyout(null); }} className="h-7 w-7 text-faint">
               {rightOpen ? <PanelRightClose /> : <PanelRightOpen />}
             </IconBtn>
             <div className="my-1 h-px w-6 bg-hairline" />
             {[[Palette, "color"], [Wand, "adjust"], [Layers, "layers"]].map(([I, k]) => {
               const Ic = I as typeof Palette;
-              const active = rightOpen && !collapsed[k as string];
+              const key = k as string;
+              const active = rightOpen ? !collapsed[key] : flyout === key;
               return (
-                <IconBtn key={k as string} active={active} onClick={() => { if (!rightOpen) setRightOpen(true); else toggle(k as string); }}>
+                <IconBtn
+                  key={key}
+                  active={active}
+                  title={{ color: "Color", adjust: "Adjustments", layers: "Layers" }[key]}
+                  onClick={() => { if (rightOpen) toggle(key); else setFlyout((f) => (f === key ? null : key)); }}
+                >
                   <Ic />
                 </IconBtn>
               );
