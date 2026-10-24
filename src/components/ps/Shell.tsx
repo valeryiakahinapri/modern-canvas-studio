@@ -271,7 +271,7 @@ export function PhotoshopShell() {
                 const active = tool === name;
                 return (
                   <div key={name} className="group relative">
-                    <IconBtn title={`${name} (${key})`} onClick={() => setTool(name)} className={cn(active && "tool-active hover:text-primary-foreground")}>
+                    <IconBtn title={`${name} (${key})`} onClick={() => setTool(name)} className={cn(active && "tool-active text-primary-foreground hover:bg-transparent hover:text-primary-foreground")}>
                       <I />
                     </IconBtn>
                     {active && <span className="absolute -left-1.5 top-1/2 h-4 w-[3px] -translate-y-1/2 rounded-full bg-primary" />}
@@ -281,7 +281,7 @@ export function PhotoshopShell() {
             </div>
           ) : (
             <div className="flex flex-col items-center gap-0.5">
-              <IconBtn className="tool-active h-7 w-7"><Move /></IconBtn>
+              <IconBtn className="tool-active h-7 w-7 text-primary-foreground"><Move /></IconBtn>
             </div>
           )}
           {leftOpen && (
