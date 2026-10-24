@@ -333,7 +333,7 @@ export function PhotoshopShell() {
         </main>
 
         {/* Right rail + panels */}
-        <div className="island flex shrink-0 overflow-hidden">
+        <div className="island relative flex shrink-0">
           <aside className="flex w-11 border-r border-hairline flex-col items-center gap-0.5 py-1.5">
             <IconBtn title={rightOpen ? "Collapse panels" : "Expand panels"} onClick={() => setRightOpen(!rightOpen)} className="h-7 w-7 text-faint">
               {rightOpen ? <PanelRightClose /> : <PanelRightOpen />}
