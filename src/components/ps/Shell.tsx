@@ -290,19 +290,19 @@ export function PhotoshopShell() {
 
         {/* Document */}
         <main className="island flex min-w-0 flex-1 flex-col overflow-hidden">
-          <div className="flex h-10 shrink-0 items-center gap-1 px-2">
-            <div className="flex h-8 items-center gap-2 rounded-[6px] bg-workspace pl-3 pr-1.5 text-[12px] shadow-[inset_0_0_0_1px_var(--hairline)]">
+          <div className="flex h-10 shrink-0 items-end gap-1 px-2 shadow-[inset_0_-1px_0_0_var(--hairline)]">
+            <div className="flex h-10 items-center gap-2 rounded-t-[7px] bg-workspace pl-3 pr-1.5 text-[12px] shadow-[inset_0_1px_0_0_var(--hairline)]">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" />
               <span className="truncate font-medium">porsche_mural.psd</span>
               <span className="font-mono text-[10.5px] text-faint">{zoom}% · RGB/8</span>
               <IconBtn className="h-5 w-5 [&_svg]:h-3 [&_svg]:w-3"><X /></IconBtn>
             </div>
-            <div className="flex h-8 items-center gap-2 rounded-[6px] px-3 text-[12px] text-muted-foreground hover:bg-surface-2">
+            <div className="flex h-8 items-center gap-2 rounded-t-[6px] px-3 text-[12px] text-muted-foreground hover:bg-surface-2">
               <span className="truncate">untitled-2.psd</span>
             </div>
-            <IconBtn className="h-7 w-7"><Plus /></IconBtn>
+            <IconBtn className="mb-0.5 h-7 w-7"><Plus /></IconBtn>
           </div>
-          <div className="workspace-bg relative grid min-h-0 flex-1 place-items-center overflow-hidden rounded-[6px] mx-1.5 mb-1.5">
+          <div className="workspace-bg relative grid min-h-0 flex-1 place-items-center overflow-hidden">
             <div className="relative shadow-canvas" style={{ width: `${zoom * 1.6}%`, maxWidth: "92%" }}>
               <img src={canvasImg} alt="Document canvas" width={1600} height={912} className="block h-auto w-full select-none" draggable={false} />
               <div className="pointer-events-none absolute inset-[12%_8%_10%_12%] rounded-[1px] border border-primary/80">
