@@ -21,7 +21,7 @@ const tools = [
   [Droplet, "Blur", "R"], [Sun, "Dodge", "O"], null,
   [PenTool, "Pen", "P"], [Type, "Type", "T"], [MousePointer2, "Path Selection", "A"],
   [RectangleHorizontal, "Rectangle", "U"], null,
-  [Hand, "Hand", "H"], [ZoomIn, "Zoom", "Z"], [MoreHorizontal, "Edit Toolbar", ""],
+  [Hand, "Hand", "H"], [ZoomIn, "Zoom", "Z"],
 ] as const;
 
 const menus = ["File", "Edit", "Image", "Layer", "Type", "Select", "Filter", "View", "Plugins", "Window", "Help"];
@@ -259,10 +259,6 @@ export function PhotoshopShell() {
       <div className="flex min-h-0 flex-1 gap-2">
         {/* Left toolbar */}
         <aside className={cn("island flex shrink-0 flex-col items-center overflow-hidden px-1.5 py-1.5 transition-[width] duration-300 ease-out", leftOpen ? "w-[80px]" : "w-12")}>
-          <IconBtn title={leftOpen ? "Collapse toolbar" : "Expand toolbar"} onClick={() => setLeftOpen(!leftOpen)} className="h-7 w-7 text-faint">
-            {leftOpen ? <PanelLeftClose /> : <PanelLeftOpen />}
-          </IconBtn>
-          <div className="my-1 h-px w-full shrink-0 bg-hairline" />
           <div className={cn("grid min-h-0 flex-1 content-start justify-items-center gap-1 overflow-y-auto overflow-x-hidden [scrollbar-width:none]", leftOpen ? "grid-cols-2" : "grid-cols-1")}>
             {tools.map((t, i) => {
               if (!t) return <div key={i} className="col-span-full my-1 h-px w-full shrink-0 bg-hairline" />;
@@ -281,6 +277,12 @@ export function PhotoshopShell() {
           <div className="relative mt-1 h-9 w-9 shrink-0">
             <div className="absolute bottom-0 right-0 h-5 w-5 rounded-[3px] bg-foreground shadow-[0_0_0_2px_var(--surface)]" />
             <div className="absolute left-0 top-0 h-5 w-5 rounded-[3px] bg-[oklch(0.55_0.2_25)] shadow-[0_0_0_2px_var(--surface)]" />
+          </div>
+          <div className={cn("mt-1 w-full shrink-0 border-t border-hairline pt-1", leftOpen ? "grid grid-cols-2 justify-items-center gap-1" : "flex flex-col items-center gap-1")}>
+            <IconBtn title="Edit Toolbar"><MoreHorizontal /></IconBtn>
+            <IconBtn title={leftOpen ? "Collapse toolbar" : "Expand toolbar"} onClick={() => setLeftOpen(!leftOpen)} className="text-faint">
+              {leftOpen ? <PanelLeftClose /> : <PanelLeftOpen />}
+            </IconBtn>
           </div>
         </aside>
 
