@@ -358,6 +358,20 @@ export function PhotoshopShell() {
             <div className="my-1 h-px w-6 bg-hairline" />
             <IconBtn><History /></IconBtn><IconBtn><MessageSquare /></IconBtn>
           </aside>
+          {/* Floating flyout panel when the rail is collapsed */}
+          {!rightOpen && flyout && (
+            <div className="absolute right-full top-1.5 z-50 mr-2 w-[300px] overflow-hidden rounded-[4px] bg-popover/95 shadow-[var(--shadow-island)] backdrop-blur-xl animate-in fade-in slide-in-from-right-1 duration-150">
+              <div className="flex items-center justify-between border-b border-hairline px-3 py-1.5">
+                <span className="text-[12px] font-medium">{{ color: "Color", adjust: "Adjustments", layers: "Layers" }[flyout]}</span>
+                <IconBtn title="Close" className="h-6 w-6 [&_svg]:h-3.5 [&_svg]:w-3.5" onClick={() => setFlyout(null)}><X /></IconBtn>
+              </div>
+              <div className="max-h-[70vh] overflow-y-auto pt-1.5">
+                {flyout === "color" && <ColorPanel />}
+                {flyout === "adjust" && <AdjustmentsPanel />}
+                {flyout === "layers" && <LayersPanel />}
+              </div>
+            </div>
+          )}
           <div className={cn("flex min-h-0 flex-col overflow-hidden transition-[width,opacity] duration-300 ease-out", rightOpen ? "w-[316px] opacity-100" : "w-0 opacity-0")}>
             <div className="flex min-h-0 w-[316px] flex-1 flex-col divide-y divide-hairline">
               <PanelCard tabs={["Color", "Swatches", "Gradients"]} collapsed={!!collapsed["color"]} onToggle={() => toggle("color")}><ColorPanel /></PanelCard>
