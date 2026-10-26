@@ -98,11 +98,11 @@ function ColorPanel() {
   return (
     <div className="flex gap-3 px-3 pb-3 pt-1">
       <div className="relative h-14 w-14 shrink-0">
-        <div className="absolute bottom-0 right-0 h-9 w-9 rounded-[3px] bg-foreground shadow-[0_0_0_2px_var(--surface)]" />
-        <div className="absolute left-0 top-0 h-9 w-9 rounded-[3px] bg-[oklch(0.55_0.2_25)] shadow-[0_0_0_2px_var(--surface),0_4px_10px_oklch(0_0_0/50%)]" />
+        <div className="absolute bottom-0 right-0 h-9 w-9 rounded-[4px] bg-foreground shadow-[0_0_0_2px_var(--surface)]" />
+        <div className="absolute left-0 top-0 h-9 w-9 rounded-[4px] bg-[oklch(0.55_0.2_25)] shadow-[0_0_0_2px_var(--surface),0_4px_10px_oklch(0_0_0/50%)]" />
         <ArrowLeftRight className="absolute -bottom-0.5 left-0 h-3 w-3 text-faint" />
       </div>
-      <div className="relative h-28 flex-1 overflow-hidden rounded-[3px] shadow-[inset_0_0_0_1px_var(--hairline)]" style={{ background: "linear-gradient(to top, #000, transparent), linear-gradient(to right, #fff, hsl(0 85% 50%))" }}>
+      <div className="relative h-28 flex-1 overflow-hidden rounded-[4px] shadow-[inset_0_0_0_1px_var(--hairline)]" style={{ background: "linear-gradient(to top, #000, transparent), linear-gradient(to right, #fff, hsl(0 85% 50%))" }}>
         <span className="absolute left-[78%] top-[22%] h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-foreground shadow-[0_0_0_1px_oklch(0_0_0/50%)]" />
       </div>
       <div className="hue-strip relative h-28 w-3 shrink-0 rounded-full">
@@ -123,14 +123,14 @@ function AdjustmentsPanel() {
         <Segmented items={["Presets", "Single"]} value={mode} onChange={setMode} />
         <div className="flex"><IconBtn title="New"><Plus /></IconBtn><IconBtn title="Group"><Folder /></IconBtn><IconBtn title="Delete"><Trash2 /></IconBtn></div>
       </div>
-      <button onClick={() => setOpen(!open)} className="flex items-center gap-1.5 rounded-[3px] px-1 py-1 text-[11.5px] font-medium text-muted-foreground hover:text-foreground">
+      <button onClick={() => setOpen(!open)} className="flex items-center gap-1.5 rounded-[4px] px-1 py-1 text-[11.5px] font-medium text-muted-foreground hover:text-foreground">
         <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", !open && "-rotate-90")} /> Automotive
         <span className="ml-auto font-mono text-[10px] text-faint">8</span>
       </button>
       {open && (
         <div className="grid grid-cols-4 gap-1.5">
           {presets.map((f, i) => (
-            <button key={i} className="group relative aspect-square overflow-hidden rounded-[4px] shadow-[inset_0_0_0_1px_var(--hairline)] ring-primary transition-all hover:ring-2 hover:ring-offset-2 hover:ring-offset-surface">
+            <button key={i} className="group relative aspect-square overflow-hidden rounded-[5px] shadow-[inset_0_0_0_1px_var(--hairline)] ring-primary transition-all hover:ring-2 hover:ring-offset-2 hover:ring-offset-surface">
               <img src={canvasImg} alt="" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110" style={{ filter: f, objectPosition: "60% 50%" }} />
             </button>
           ))}
@@ -161,7 +161,7 @@ function LayersPanel() {
         </div>
         <div className="flex items-center gap-1.5">
           <span className="text-[11px] text-faint">Lock</span>
-          <div className="flex rounded-[4px] bg-surface-2 p-0.5">
+          <div className="flex rounded-[5px] bg-surface-2 p-0.5">
             {[Grid3x3, Brush, Move, Frame, Lock].map((I, i) => <IconBtn key={i} className="h-6 w-6 [&_svg]:h-3.5 [&_svg]:w-3.5"><I /></IconBtn>)}
           </div>
           <Pill className="ml-auto w-[110px] justify-between"><span className="text-faint">Fill</span><span className="font-mono">100%</span></Pill>
@@ -173,17 +173,17 @@ function LayersPanel() {
             key={l.name}
             onClick={() => setSel(i)}
             className={cn(
-              "group flex cursor-default items-center gap-2 rounded-[4px] p-1.5 pr-2.5 transition-all",
+              "group flex cursor-default items-center gap-2 rounded-[5px] p-1.5 pr-2.5 transition-all",
               sel === i ? "bg-primary/15 shadow-[inset_0_0_0_1px_oklch(0.68_0.16_250/35%)]" : "hover:bg-surface-2",
             )}
           >
-            <button onClick={(e) => { e.stopPropagation(); setVis(vis.map((v, j) => (j === i ? !v : v))); }} className="grid h-6 w-6 place-items-center rounded-[4px] text-muted-foreground hover:text-foreground">
+            <button onClick={(e) => { e.stopPropagation(); setVis(vis.map((v, j) => (j === i ? !v : v))); }} className="grid h-6 w-6 place-items-center rounded-[5px] text-muted-foreground hover:text-foreground">
               {vis[i] ? <Eye className="h-3.5 w-3.5" /> : <EyeOff className="h-3.5 w-3.5 text-faint" />}
             </button>
             {l.kind === "adj" ? (
-              <div className="grid h-9 w-12 place-items-center rounded-[3px] bg-surface-3"><SlidersHorizontal className="h-4 w-4 text-muted-foreground" /></div>
+              <div className="grid h-9 w-12 place-items-center rounded-[4px] bg-surface-3"><SlidersHorizontal className="h-4 w-4 text-muted-foreground" /></div>
             ) : (
-              <div className="checker h-9 w-12 overflow-hidden rounded-[3px] shadow-[inset_0_0_0_1px_var(--hairline)]">
+              <div className="checker h-9 w-12 overflow-hidden rounded-[4px] shadow-[inset_0_0_0_1px_var(--hairline)]">
                 <img src={canvasImg} alt="" className={cn("h-full w-full object-cover", !vis[i] && "opacity-30")} />
               </div>
             )}
