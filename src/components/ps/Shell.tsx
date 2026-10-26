@@ -32,7 +32,7 @@ function IconBtn({ children, active, title, className, onClick }: { children: Re
       title={title}
       onClick={onClick}
       className={cn(
-        "grid h-8 w-8 shrink-0 place-items-center rounded-[4px] text-muted-foreground transition-all duration-150 hover:bg-surface-3 hover:text-foreground active:scale-95 [&_svg]:h-[16px] [&_svg]:w-[16px] [&_svg]:stroke-[1.75]",
+        "grid h-8 w-8 shrink-0 place-items-center rounded-[5px] text-muted-foreground transition-all duration-150 hover:bg-surface-3 hover:text-foreground active:scale-95 [&_svg]:h-[16px] [&_svg]:w-[16px] [&_svg]:stroke-[1.75]",
         active && "bg-surface-3 text-foreground",
         className,
       )}
@@ -44,13 +44,13 @@ function IconBtn({ children, active, title, className, onClick }: { children: Re
 
 function Segmented({ items, value, onChange }: { items: string[]; value: string; onChange: (v: string) => void }) {
   return (
-    <div className="flex min-w-0 gap-0.5 rounded-[5px] bg-background/60 p-[3px] shadow-[inset_0_0_0_1px_var(--hairline)]">
+    <div className="flex min-w-0 gap-0.5 rounded-[6px] bg-background/60 p-[3px] shadow-[inset_0_0_0_1px_var(--hairline)]">
       {items.map((it) => (
         <button
           key={it}
           onClick={() => onChange(it)}
           className={cn(
-            "truncate rounded-[3px] px-2.5 py-1 text-[11.5px] font-medium transition-all",
+            "truncate rounded-[4px] px-2.5 py-1 text-[11.5px] font-medium transition-all",
             value === it ? "bg-surface-3 text-foreground shadow-[0_1px_2px_oklch(0_0_0/40%),inset_0_1px_0_oklch(1_0_0/6%)]" : "text-muted-foreground hover:text-foreground",
           )}
         >
@@ -63,7 +63,7 @@ function Segmented({ items, value, onChange }: { items: string[]; value: string;
 
 function Pill({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className={cn("flex h-7 items-center gap-1.5 rounded-[4px] bg-surface-2 px-2.5 text-[11.5px] text-foreground shadow-[inset_0_0_0_1px_var(--hairline)]", className)}>
+    <div className={cn("flex h-7 items-center gap-1.5 rounded-[5px] bg-surface-2 px-2.5 text-[11.5px] text-foreground shadow-[inset_0_0_0_1px_var(--hairline)]", className)}>
       {children}
     </div>
   );
