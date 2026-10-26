@@ -199,7 +199,7 @@ function LayersPanel() {
   );
 }
 
-export function PhotoshopShell() {
+export function PhotoshopShell({ oracle }: { oracle?: boolean }) {
   const [tool, setTool] = useState("Move");
   const [leftOpen, setLeftOpen] = useState(true);
   const [rightOpen, setRightOpen] = useState(true);
@@ -208,13 +208,14 @@ export function PhotoshopShell() {
   const [flyout, setFlyout] = useState<string | null>(null);
   const [zoom, setZoom] = useState(42);
 
+  const menusShown = oracle ? menus.filter((m) => m !== "Plugins") : menus;
   return (
-    <div className="flex h-screen flex-col gap-2 bg-background p-2 text-foreground">
+    <div data-oracle-region="page" className="flex h-screen flex-col gap-2 bg-background p-2 text-foreground">
       {/* Title / menu bar */}
-      <div className="flex h-10 shrink-0 items-center gap-1 px-1">
+      <div data-oracle-region="title-bar" className="flex h-10 shrink-0 items-center gap-1 px-1">
         <div className="mr-2 grid h-7 w-7 place-items-center rounded-[7px] text-[11px] font-bold tracking-tight text-primary-foreground" style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-active)" }}>Ps</div>
         <nav className="flex min-w-0 items-center overflow-hidden">
-          {menus.map((m) => (
+          {menusShown.map((m) => (
             <button key={m} className="rounded-[7px] px-2.5 py-1 text-[12.5px] text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground">{m}</button>
           ))}
         </nav>
@@ -225,17 +226,19 @@ export function PhotoshopShell() {
             <kbd className="ml-auto rounded-[6px] bg-surface-3 px-1.5 py-0.5 font-mono text-[10px]">⌘K</kbd>
           </div>
         </div>
-        <div className="ml-auto flex items-center gap-1">
-          <IconBtn title="Undo"><Undo2 /></IconBtn><IconBtn title="Redo"><Redo2 /></IconBtn>
-          <button className="ml-1 flex h-8 items-center gap-1.5 rounded-[7px] px-3.5 text-[12px] font-medium text-primary-foreground transition-transform active:scale-95" style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-active)" }}>
-            <Share className="h-3.5 w-3.5" /> Share
-          </button>
-          <div className="ml-1 grid h-8 w-8 place-items-center rounded-full bg-surface-3 text-[11px] font-semibold">AK</div>
-        </div>
+        {!oracle && (
+          <div className="ml-auto flex items-center gap-1">
+            <IconBtn title="Undo"><Undo2 /></IconBtn><IconBtn title="Redo"><Redo2 /></IconBtn>
+            <button className="ml-1 flex h-8 items-center gap-1.5 rounded-[7px] px-3.5 text-[12px] font-medium text-primary-foreground transition-transform active:scale-95" style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-active)" }}>
+              <Share className="h-3.5 w-3.5" /> Share
+            </button>
+            <div className="ml-1 grid h-8 w-8 place-items-center rounded-full bg-surface-3 text-[11px] font-semibold">AK</div>
+          </div>
+        )}
       </div>
 
       {/* Options bar */}
-      <div className="island flex h-11 shrink-0 items-center gap-2 overflow-hidden px-1.5">
+      <div data-oracle-region="options-bar" className="island flex h-11 shrink-0 items-center gap-2 overflow-hidden px-1.5">
         <IconBtn title="Home"><Home /></IconBtn>
         <div className="h-4 w-px bg-foreground/[0.06]" />
         <Pill><Move className="h-3.5 w-3.5" /> {tool} <ChevronDown className="h-3 w-3 text-faint" /></Pill>
@@ -259,7 +262,7 @@ export function PhotoshopShell() {
       {/* Main */}
       <div className="flex min-h-0 flex-1 gap-2">
         {/* Left toolbar */}
-        <aside className={cn("island flex shrink-0 flex-col items-center overflow-hidden px-1.5 py-1.5 transition-[width] duration-300 ease-out", leftOpen ? "w-[80px]" : "w-12")}>
+        <aside data-oracle-region="toolbar" className={cn("island flex shrink-0 flex-col items-center overflow-hidden px-1.5 py-1.5 transition-[width] duration-300 ease-out", leftOpen ? "w-[80px]" : "w-12")}>
           <div className={cn("grid min-h-0 flex-1 content-start justify-items-center gap-1 overflow-y-auto overflow-x-hidden [scrollbar-width:none]", leftOpen ? "grid-cols-2" : "grid-cols-1")}>
             {tools.map((t, i) => {
               if (!t) return <div key={i} className="col-span-full justify-self-center my-1.5 h-px w-4 shrink-0 bg-foreground/[0.06]" />;
@@ -289,20 +292,30 @@ export function PhotoshopShell() {
 
 
         {/* Document */}
-        <main className="flex min-w-0 flex-1 flex-col overflow-hidden rounded-[12px] bg-workspace">
-          <div className="flex h-11 shrink-0 items-center gap-1 px-2">
-            <div className="flex h-9 items-center gap-2 rounded-[8px] bg-surface/70 pl-3 pr-1.5 text-[12px]">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-              <span className="truncate font-medium">porsche_mural.psd</span>
-              <span className="font-mono text-[10.5px] text-faint">{zoom}% · RGB/8</span>
-              <IconBtn className="h-5 w-5 [&_svg]:h-3 [&_svg]:w-3"><X /></IconBtn>
-            </div>
-            <div className="flex h-9 items-center gap-2 rounded-[7px] px-3 text-[12px] text-muted-foreground hover:bg-surface-2">
-              <span className="truncate">untitled-2.psd</span>
-            </div>
-            <IconBtn className="h-7 w-7"><Plus /></IconBtn>
+        <main data-oracle-region="document" className="flex min-w-0 flex-1 flex-col overflow-hidden rounded-[12px] bg-workspace">
+          <div data-oracle-region="tab-strip" className="flex h-11 shrink-0 items-center gap-1 px-2">
+            {oracle ? (
+              <div className="flex h-9 items-center gap-2 rounded-[8px] bg-[#0E0F10] pl-3 pr-1.5 text-[12px]">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                <span className="truncate font-medium">Untitled</span>
+                <IconBtn className="h-5 w-5 [&_svg]:h-3 [&_svg]:w-3"><X /></IconBtn>
+              </div>
+            ) : (
+              <>
+                <div className="flex h-9 items-center gap-2 rounded-[8px] bg-surface/70 pl-3 pr-1.5 text-[12px]">
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                  <span className="truncate font-medium">porsche_mural.psd</span>
+                  <span className="font-mono text-[10.5px] text-faint">{zoom}% · RGB/8</span>
+                  <IconBtn className="h-5 w-5 [&_svg]:h-3 [&_svg]:w-3"><X /></IconBtn>
+                </div>
+                <div className="flex h-9 items-center gap-2 rounded-[7px] px-3 text-[12px] text-muted-foreground hover:bg-surface-2">
+                  <span className="truncate">untitled-2.psd</span>
+                </div>
+                <IconBtn className="h-7 w-7"><Plus /></IconBtn>
+              </>
+            )}
           </div>
-          <div className="workspace-bg relative grid min-h-0 flex-1 place-items-center overflow-hidden">
+          <div data-oracle-region="workspace" className="workspace-bg relative grid min-h-0 flex-1 place-items-center overflow-hidden">
             <div className="relative shadow-canvas" style={{ width: `${zoom * 1.6}%`, maxWidth: "92%" }}>
               <img src={canvasImg} alt="Document canvas" width={1600} height={912} className="block h-auto w-full select-none" draggable={false} />
               <div className="pointer-events-none absolute inset-[12%_8%_10%_12%] rounded-[1px] border border-primary/80">
@@ -312,6 +325,7 @@ export function PhotoshopShell() {
               </div>
             </div>
             {/* Floating contextual task bar */}
+            {!oracle && (
             <div className="absolute bottom-14 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-[12px] bg-popover/90 p-1 pl-3 shadow-[var(--shadow-island)] backdrop-blur-xl">
               <Sparkles className="h-3.5 w-3.5 text-primary" />
               <span className="mr-1 whitespace-nowrap text-[11.5px] text-muted-foreground">Vehicle Cutout</span>
@@ -320,8 +334,9 @@ export function PhotoshopShell() {
               ))}
               <IconBtn className="h-7 w-7"><MoreHorizontal /></IconBtn>
             </div>
+            )}
             {/* Status bar */}
-            <div className="absolute inset-x-2 bottom-2 flex items-center gap-3 rounded-[9px] bg-surface/70 px-2 py-1 text-[11px] text-muted-foreground backdrop-blur-xl">
+            <div data-oracle-region="status-pill" className={cn("absolute inset-x-2 bottom-2 flex items-center gap-3 rounded-[9px] px-2 py-1 text-[11px] text-muted-foreground", oracle ? "bg-[#0E0F10]" : "bg-surface/70 backdrop-blur-xl")}>
               <div className="flex items-center rounded-[7px] bg-surface-2">
                 <IconBtn className="h-6 w-6 [&_svg]:h-3 [&_svg]:w-3" onClick={() => setZoom(Math.max(15, zoom - 5))}><Minus /></IconBtn>
                 <span className="w-10 text-center font-mono text-foreground">{zoom}%</span>
@@ -334,8 +349,8 @@ export function PhotoshopShell() {
         </main>
 
         {/* Right rail + panels */}
-        <div className="island relative flex shrink-0">
-          <aside className="flex w-11 flex-col items-center gap-0.5 py-1.5">
+        <div data-oracle-region="right-island" className="island relative flex shrink-0">
+          <aside data-oracle-region="rail" className="flex w-11 flex-col items-center gap-0.5 py-1.5">
             <IconBtn title={rightOpen ? "Collapse panels" : "Expand panels"} onClick={() => { setRightOpen(!rightOpen); setFlyout(null); }} className="h-7 w-7 text-faint">
               {rightOpen ? <PanelRightClose /> : <PanelRightOpen />}
             </IconBtn>
@@ -361,7 +376,8 @@ export function PhotoshopShell() {
           {/* Floating flyout panel when the rail is collapsed */}
           {!rightOpen && flyout && (
             <div
-              className="absolute right-full z-50 mr-2 w-[300px] overflow-hidden rounded-[12px] bg-popover/95 shadow-[var(--shadow-island)] backdrop-blur-xl animate-in fade-in slide-in-from-right-1 duration-150"
+              data-oracle-region="flyout"
+              className={cn("absolute right-full z-50 mr-2 w-[300px] overflow-hidden rounded-[12px] shadow-[var(--shadow-island)] animate-in fade-in slide-in-from-right-1 duration-150", oracle ? "bg-popover" : "bg-popover/95 backdrop-blur-xl")}
               style={{ top: { color: 46, adjust: 82, layers: 118 }[flyout] }}
             >
               <div className="flex items-center justify-between px-3 py-1.5">
@@ -375,11 +391,21 @@ export function PhotoshopShell() {
               </div>
             </div>
           )}
-          <div className={cn("flex min-h-0 flex-col overflow-hidden transition-[width,opacity] duration-300 ease-out", rightOpen ? "w-[316px] opacity-100" : "w-0 opacity-0")}>
+          <div data-oracle-region="panel-column" className={cn("flex min-h-0 flex-col overflow-hidden transition-[width,opacity] duration-300 ease-out", rightOpen ? "w-[316px] opacity-100" : "w-0 opacity-0")}>
             <div className="flex min-h-0 w-[316px] flex-1 flex-col divide-y divide-foreground/[0.04]">
-              <PanelCard tabs={["Color", "Swatches", "Gradients"]} collapsed={!!collapsed["color"]} onToggle={() => toggle("color")}><ColorPanel /></PanelCard>
-              <PanelCard tabs={["Adjustments", "Properties", "Libraries"]} collapsed={!!collapsed["adjust"]} onToggle={() => toggle("adjust")}><AdjustmentsPanel /></PanelCard>
-              <PanelCard tabs={["Layers", "Channels", "Paths"]} grow collapsed={!!collapsed["layers"]} onToggle={() => toggle("layers")}><LayersPanel /></PanelCard>
+              {oracle ? (
+                <>
+                  <PanelCard tabs={["Swatches", "Color", "Gradients", "Patterns"]} collapsed={!!collapsed["color"]} onToggle={() => toggle("color")}><ColorPanel /></PanelCard>
+                  <PanelCard tabs={["Properties", "Adjustments"]} collapsed={!!collapsed["adjust"]} onToggle={() => toggle("adjust")}><AdjustmentsPanel /></PanelCard>
+                  <PanelCard tabs={["Layers", "Channels", "Paths"]} grow collapsed={!!collapsed["layers"]} onToggle={() => toggle("layers")}><LayersPanel /></PanelCard>
+                </>
+              ) : (
+                <>
+                  <PanelCard tabs={["Color", "Swatches", "Gradients"]} collapsed={!!collapsed["color"]} onToggle={() => toggle("color")}><ColorPanel /></PanelCard>
+                  <PanelCard tabs={["Adjustments", "Properties", "Libraries"]} collapsed={!!collapsed["adjust"]} onToggle={() => toggle("adjust")}><AdjustmentsPanel /></PanelCard>
+                  <PanelCard tabs={["Layers", "Channels", "Paths"]} grow collapsed={!!collapsed["layers"]} onToggle={() => toggle("layers")}><LayersPanel /></PanelCard>
+                </>
+              )}
             </div>
           </div>
         </div>
