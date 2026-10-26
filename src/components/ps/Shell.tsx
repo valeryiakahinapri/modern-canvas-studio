@@ -212,22 +212,22 @@ export function PhotoshopShell() {
     <div className="flex h-screen flex-col gap-2 bg-background p-2 text-foreground">
       {/* Title / menu bar */}
       <div className="flex h-10 shrink-0 items-center gap-1 px-1">
-        <div className="mr-2 grid h-7 w-7 place-items-center rounded-[4px] text-[11px] font-bold tracking-tight text-primary-foreground" style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-active)" }}>Ps</div>
+        <div className="mr-2 grid h-7 w-7 place-items-center rounded-[5px] text-[11px] font-bold tracking-tight text-primary-foreground" style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-active)" }}>Ps</div>
         <nav className="flex min-w-0 items-center overflow-hidden">
           {menus.map((m) => (
-            <button key={m} className="rounded-[4px] px-2.5 py-1 text-[12.5px] text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground">{m}</button>
+            <button key={m} className="rounded-[5px] px-2.5 py-1 text-[12.5px] text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground">{m}</button>
           ))}
         </nav>
         <div className="mx-auto hidden items-center gap-2 lg:flex">
-          <div className="flex h-8 w-[340px] items-center gap-2 rounded-[5px] bg-surface px-3.5 text-muted-foreground shadow-[var(--shadow-island)]">
+          <div className="flex h-8 w-[340px] items-center gap-2 rounded-[6px] bg-surface px-3.5 text-muted-foreground shadow-[var(--shadow-island)]">
             <Search className="h-3.5 w-3.5" />
             <span className="text-[12px]">Search tools, actions, help…</span>
-            <kbd className="ml-auto rounded-[3px] bg-surface-3 px-1.5 py-0.5 font-mono text-[10px]">⌘K</kbd>
+            <kbd className="ml-auto rounded-[4px] bg-surface-3 px-1.5 py-0.5 font-mono text-[10px]">⌘K</kbd>
           </div>
         </div>
         <div className="ml-auto flex items-center gap-1">
           <IconBtn title="Undo"><Undo2 /></IconBtn><IconBtn title="Redo"><Redo2 /></IconBtn>
-          <button className="ml-1 flex h-8 items-center gap-1.5 rounded-[4px] px-3.5 text-[12px] font-medium text-primary-foreground transition-transform active:scale-95" style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-active)" }}>
+          <button className="ml-1 flex h-8 items-center gap-1.5 rounded-[5px] px-3.5 text-[12px] font-medium text-primary-foreground transition-transform active:scale-95" style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-active)" }}>
             <Share className="h-3.5 w-3.5" /> Share
           </button>
           <div className="ml-1 grid h-8 w-8 place-items-center rounded-full bg-surface-3 text-[11px] font-semibold">AK</div>
@@ -243,12 +243,12 @@ export function PhotoshopShell() {
         <Pill>Layer <ChevronDown className="h-3 w-3 text-faint" /></Pill>
         <label className="flex items-center gap-2 whitespace-nowrap text-[11.5px] text-muted-foreground"><Switch on={false} /> Transform controls</label>
         <div className="h-5 w-px bg-hairline" />
-        <div className="flex rounded-[4px] bg-surface-2 p-0.5">
+        <div className="flex rounded-[5px] bg-surface-2 p-0.5">
           {[AlignStartVertical, AlignCenterVertical, AlignEndVertical, AlignStartHorizontal, AlignCenterHorizontal, AlignEndHorizontal].map((I, i) => <IconBtn key={i} className="h-7 w-7"><I /></IconBtn>)}
         </div>
         <IconBtn><MoreHorizontal /></IconBtn>
         <div className="ml-auto flex items-center gap-1">
-          <button className="flex h-8 items-center gap-1.5 rounded-[4px] bg-surface-2 px-3 text-[11.5px] font-medium shadow-[inset_0_0_0_1px_var(--hairline)] hover:bg-surface-3">
+          <button className="flex h-8 items-center gap-1.5 rounded-[5px] bg-surface-2 px-3 text-[11.5px] font-medium shadow-[inset_0_0_0_1px_var(--hairline)] hover:bg-surface-3">
             <Sparkles className="h-3.5 w-3.5 text-primary" /> Generative Fill
           </button>
           <IconBtn><Settings2 /></IconBtn>
