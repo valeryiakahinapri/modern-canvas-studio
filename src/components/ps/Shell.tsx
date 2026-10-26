@@ -276,8 +276,8 @@ export function PhotoshopShell() {
             })}
           </div>
           <div className="relative mt-1 h-9 w-9 shrink-0">
-            <div className="absolute bottom-0 right-0 h-5 w-5 rounded-[3px] bg-foreground shadow-[0_0_0_2px_var(--surface)]" />
-            <div className="absolute left-0 top-0 h-5 w-5 rounded-[3px] bg-[oklch(0.55_0.2_25)] shadow-[0_0_0_2px_var(--surface)]" />
+            <div className="absolute bottom-0 right-0 h-5 w-5 rounded-[4px] bg-foreground shadow-[0_0_0_2px_var(--surface)]" />
+            <div className="absolute left-0 top-0 h-5 w-5 rounded-[4px] bg-[oklch(0.55_0.2_25)] shadow-[0_0_0_2px_var(--surface)]" />
           </div>
           <div className={cn("mt-1 w-full shrink-0 border-t border-hairline pt-1", leftOpen ? "grid grid-cols-2 justify-items-center gap-1" : "flex flex-col items-center gap-1")}>
             <IconBtn title="Edit Toolbar"><MoreHorizontal /></IconBtn>
@@ -290,19 +290,19 @@ export function PhotoshopShell() {
 
         {/* Document */}
         <main className="island flex min-w-0 flex-1 flex-col overflow-hidden">
-          <div className="flex h-10 shrink-0 items-center gap-1 px-2">
-            <div className="flex h-8 items-center gap-2 rounded-[5px] bg-workspace pl-3 pr-1.5 text-[12px] shadow-[inset_0_0_0_1px_var(--hairline)]">
+          <div className="flex h-10 shrink-0 items-end gap-1 px-1.5">
+            <div className="flex h-9 items-center gap-2 rounded-t-[7px] bg-workspace pl-3 pr-1.5 text-[12px] shadow-[inset_0_1px_0_var(--hairline),inset_1px_0_0_var(--hairline),inset_-1px_0_0_var(--hairline)]">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" />
               <span className="truncate font-medium">porsche_mural.psd</span>
               <span className="font-mono text-[10.5px] text-faint">{zoom}% · RGB/8</span>
               <IconBtn className="h-5 w-5 [&_svg]:h-3 [&_svg]:w-3"><X /></IconBtn>
             </div>
-            <div className="flex h-8 items-center gap-2 rounded-[5px] px-3 text-[12px] text-muted-foreground hover:bg-surface-2">
+            <div className="mb-0.5 flex h-8 items-center gap-2 rounded-[5px] px-3 text-[12px] text-muted-foreground hover:bg-surface-2">
               <span className="truncate">untitled-2.psd</span>
             </div>
-            <IconBtn className="h-7 w-7"><Plus /></IconBtn>
+            <IconBtn className="mb-0.5 h-7 w-7"><Plus /></IconBtn>
           </div>
-          <div className="workspace-bg relative grid min-h-0 flex-1 place-items-center overflow-hidden rounded-[5px] mx-1.5 mb-1.5">
+          <div className="workspace-bg relative grid min-h-0 flex-1 place-items-center overflow-hidden rounded-b-[7px] mx-1.5 mb-1.5">
             <div className="relative shadow-canvas" style={{ width: `${zoom * 1.6}%`, maxWidth: "92%" }}>
               <img src={canvasImg} alt="Document canvas" width={1600} height={912} className="block h-auto w-full select-none" draggable={false} />
               <div className="pointer-events-none absolute inset-[12%_8%_10%_12%] rounded-[1px] border border-primary/80">
@@ -312,17 +312,17 @@ export function PhotoshopShell() {
               </div>
             </div>
             {/* Floating contextual task bar */}
-            <div className="absolute bottom-14 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-[6px] bg-popover/90 p-1 pl-3 shadow-[var(--shadow-island)] backdrop-blur-xl">
+            <div className="absolute bottom-14 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-[7px] bg-popover/90 p-1 pl-3 shadow-[var(--shadow-island)] backdrop-blur-xl">
               <Sparkles className="h-3.5 w-3.5 text-primary" />
               <span className="mr-1 text-[11.5px] text-muted-foreground">Vehicle Cutout</span>
               {["Select subject", "Remove background", "Generative expand"].map((a) => (
-                <button key={a} className="whitespace-nowrap rounded-[4px] px-3 py-1.5 text-[11.5px] font-medium hover:bg-surface-3">{a}</button>
+                <button key={a} className="whitespace-nowrap rounded-[5px] px-3 py-1.5 text-[11.5px] font-medium hover:bg-surface-3">{a}</button>
               ))}
               <IconBtn className="h-7 w-7"><MoreHorizontal /></IconBtn>
             </div>
             {/* Status bar */}
-            <div className="absolute inset-x-2 bottom-2 flex items-center gap-3 rounded-[5px] bg-surface/80 px-2 py-1 text-[11px] text-muted-foreground backdrop-blur-xl shadow-[inset_0_0_0_1px_var(--hairline)]">
-              <div className="flex items-center rounded-[4px] bg-surface-2">
+            <div className="absolute inset-x-2 bottom-2 flex items-center gap-3 rounded-[6px] bg-surface/80 px-2 py-1 text-[11px] text-muted-foreground backdrop-blur-xl shadow-[inset_0_0_0_1px_var(--hairline)]">
+              <div className="flex items-center rounded-[5px] bg-surface-2">
                 <IconBtn className="h-6 w-6 [&_svg]:h-3 [&_svg]:w-3" onClick={() => setZoom(Math.max(15, zoom - 5))}><Minus /></IconBtn>
                 <span className="w-10 text-center font-mono text-foreground">{zoom}%</span>
                 <IconBtn className="h-6 w-6 [&_svg]:h-3 [&_svg]:w-3" onClick={() => setZoom(Math.min(60, zoom + 5))}><Plus /></IconBtn>
@@ -361,7 +361,7 @@ export function PhotoshopShell() {
           {/* Floating flyout panel when the rail is collapsed */}
           {!rightOpen && flyout && (
             <div
-              className="absolute right-full z-50 mr-2 w-[300px] overflow-hidden rounded-[6px] bg-popover/95 shadow-[var(--shadow-island)] backdrop-blur-xl animate-in fade-in slide-in-from-right-1 duration-150"
+              className="absolute right-full z-50 mr-2 w-[300px] overflow-hidden rounded-[7px] bg-popover/95 shadow-[var(--shadow-island)] backdrop-blur-xl animate-in fade-in slide-in-from-right-1 duration-150"
               style={{ top: { color: 46, adjust: 82, layers: 118 }[flyout] }}
             >
               <div className="flex items-center justify-between border-b border-hairline px-3 py-1.5">
