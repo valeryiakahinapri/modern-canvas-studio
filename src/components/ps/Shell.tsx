@@ -314,7 +314,7 @@ export function PhotoshopShell() {
             {/* Floating contextual task bar */}
             <div className="absolute bottom-14 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-[12px] bg-popover/90 p-1 pl-3 shadow-[var(--shadow-island)] backdrop-blur-xl">
               <Sparkles className="h-3.5 w-3.5 text-primary" />
-              <span className="mr-1 text-[11.5px] text-muted-foreground">Vehicle Cutout</span>
+              <span className="mr-1 whitespace-nowrap text-[11.5px] text-muted-foreground">Vehicle Cutout</span>
               {["Select subject", "Remove background", "Generative expand"].map((a) => (
                 <button key={a} className="whitespace-nowrap rounded-[7px] px-3 py-1.5 text-[11.5px] font-medium hover:bg-surface-3">{a}</button>
               ))}
