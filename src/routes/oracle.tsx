@@ -10,7 +10,7 @@ import { PhotoshopShell } from "@/components/ps/Shell";
  *  - menus: the app's ten (no Plugins); tab strip: one "Untitled" tab, no Plus button
  *  - dock cards: the app's real Essentials tab sets
  *  - no title-bar right cluster (Share/avatar/Undo/Redo), no floating task bar
- *  - status pill + active doc tab + flyout: solid composites (surface/70 -> #0E0F10,
+ *  - status pill + active doc tab + flyout: solid composites (surface/70 -> #0F1012,
  *    popover/95 -> #1B1D20) instead of backdrop-blur (egui has no blur; both sides render
  *    the same solid)
  */

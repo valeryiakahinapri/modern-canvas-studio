@@ -295,7 +295,7 @@ export function PhotoshopShell({ oracle }: { oracle?: boolean }) {
         <main data-oracle-region="document" className="flex min-w-0 flex-1 flex-col overflow-hidden rounded-[12px] bg-workspace">
           <div data-oracle-region="tab-strip" className="flex h-11 shrink-0 items-center gap-1 px-2">
             {oracle ? (
-              <div className="flex h-9 items-center gap-2 rounded-[8px] bg-[#0E0F10] pl-3 pr-1.5 text-[12px]">
+              <div className="flex h-9 items-center gap-2 rounded-[8px] bg-[#0F1012] pl-3 pr-1.5 text-[12px]">
                 <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                 <span className="truncate font-medium">Untitled</span>
                 <IconBtn className="h-5 w-5 [&_svg]:h-3 [&_svg]:w-3"><X /></IconBtn>
@@ -336,7 +336,7 @@ export function PhotoshopShell({ oracle }: { oracle?: boolean }) {
             </div>
             )}
             {/* Status bar */}
-            <div data-oracle-region="status-pill" className={cn("absolute inset-x-2 bottom-2 flex items-center gap-3 rounded-[9px] px-2 py-1 text-[11px] text-muted-foreground", oracle ? "bg-[#0E0F10]" : "bg-surface/70 backdrop-blur-xl")}>
+            <div data-oracle-region="status-pill" className={cn("absolute inset-x-2 bottom-2 flex items-center gap-3 rounded-[9px] px-2 py-1 text-[11px] text-muted-foreground", oracle ? "bg-[#0F1012]" : "bg-surface/70 backdrop-blur-xl")}>
               <div className="flex items-center rounded-[7px] bg-surface-2">
                 <IconBtn className="h-6 w-6 [&_svg]:h-3 [&_svg]:w-3" onClick={() => setZoom(Math.max(15, zoom - 5))}><Minus /></IconBtn>
                 <span className="w-10 text-center font-mono text-foreground">{zoom}%</span>
